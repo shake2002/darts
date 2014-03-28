@@ -1,4 +1,4 @@
-angular.module('dartsApp', ['ngRoute', 'contorllers']).
+angular.module('dartsApp', ['ngRoute', 'contorllers', 'directives']).
 
 config(['$routeProvider',
 	function($routeProvider) {
@@ -8,6 +8,10 @@ config(['$routeProvider',
 			.when('/singleGame', {
 				templateUrl: 'html/partials/singleGame.html',
 				controller: 'SingleGameCtrl'
+			})
+			.when('/manageUsers', {
+				templateUrl: 'html/partials/manageUsers.html',
+				controller: 'ManageUsersCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'
