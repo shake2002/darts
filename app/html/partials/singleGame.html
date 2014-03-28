@@ -1,3 +1,33 @@
-<div class="panel panel-primery">
-	Ekran gry.
+<div class="panel panel-primary">
+	<div class="panel-heading"><div class="col-md-11">Pojedyncza gra</div><div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" href="#/">Powrót</a></div></div>
+	<div class="panel-body" ng-show="!playersSelected">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="thumbnail">
+					<div class="caption">
+						Zawodnik nr 1
+						<p ng-repeat="player in players">						
+							<button  ng-class="{'btn btn-primary' : playerChosen[0] == player.id, 'btn btn-default' : playerChosen[0] != player.id}" ng-click="selectPlayer(player.id, 1)" ng-disabled="(playerChosen[0] > 0 && playerChosen[0] != player.id)  || playerChosen[1] == player.id">{{player.name}}</button>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="thumbnail">
+					<div class="caption">
+						Zawodnik nr 2
+						<p ng-repeat="player in players">						
+							<button ng-class="{'btn btn-primary' : playerChosen[1] == player.id, 'btn btn-default' : playerChosen[1] != player.id}" ng-click="selectPlayer(player.id, 2)" ng-disabled="(playerChosen[1] > 0 && playerChosen[1] != player.id) || playerChosen[0] == player.id">{{player.name}}</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();" ng-disabled="playerChosen[0] == 0 || playerChosen[1] == 0">Start</button></div>
+		</div>
+	</div>
+	<div class="panel-body" ng-show="playersSelected">
+		Ekran gry
+	</div>
 </div>

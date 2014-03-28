@@ -1,0 +1,11 @@
+{
+	"name": "darts",
+	"description": "Description",
+	"repository": "https://github.com/shake2002/darts",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "3.x",
+		"mongodb": "1.3.x"
+	}
+}
