@@ -23,6 +23,16 @@ var app = express(),
 var DEFAULT_PORT = 8000;
 var port = parseInt(process.argv[2]) || DEFAULT_PORT;
 
+app.use(express.logger());
+
+app.use(function (err, req, res, next) {
+	console.error(err.stack);
+	res.send(500, 'Something broke!');
+});
+var url = __dirname + './../app';
+console.log("URL:" + url);
+
+app.use(express.static(url));
 
 app.use(express.logger({
 	stream: accessLogFile

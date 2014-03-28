@@ -30,4 +30,9 @@ exports.init = function (server) {
 			response.send(data);
 		});
 	});
+
+	server.get('/', function (request, response) {
+		console.log("helloworld request " + request.uri);
+		response.send(request.uri);
+	});
 };
