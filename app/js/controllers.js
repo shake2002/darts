@@ -6,15 +6,12 @@ angular.module('contorllers', [])
 
 		$scope.players = [{
 			'id': 1,
-			'selected': false,
 			'name': 'Kasia Krawczyk'
 		}, {
 			'id': 2,
-			'selected': false,
 			'name': 'Jan Kowalski'
 		}, {
 			'id': 3,
-			'selected': false,
 			'name': 'Zbigniew Nowak'
 		}];
 

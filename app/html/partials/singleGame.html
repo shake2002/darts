@@ -2,17 +2,8 @@
 	<div class="panel-heading"><div class="col-md-11">Pojedyncza gra</div><div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" href="#/">Powrót</a></div></div>
 	<div class="panel-body" ng-show="!playersSelected">
 		<div class="row">
-			<players column-no="1" players="players"></players>
-			<div class="col-md-6">
-				<div class="thumbnail">
-					<div class="caption">
-						Zawodnik nr 2
-						<p ng-repeat="player in players">						
-							<button ng-class="{'btn btn-primary' : playerChosen[1] == player.id, 'btn btn-default' : playerChosen[1] != player.id}" ng-click="selectPlayer(player.id, 2)" ng-disabled="(playerChosen[1] > 0 && playerChosen[1] != player.id) || playerChosen[0] == player.id">{{player.name}}</button>
-						</p>
-					</div>
-				</div>
-			</div>
+			<players column-no="1" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
+			<players column-no="2" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
 		</div>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();" ng-disabled="playerChosen[0] == 0 || playerChosen[1] == 0">Start</button></div>
