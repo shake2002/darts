@@ -1,22 +1,11 @@
 angular.module('contorllers', [])
 
-.controller('SingleGameCtrl', ['$scope',
-	function($scope) {
+.controller('SingleGameCtrl', ['$scope', 'Players',
+
+	function($scope, Players) {
 		$scope.playersSelected = false;
 
-		$scope.players = [{
-			'id': 1,
-			'selected': false,
-			'name': 'Kasia Krawczyk'
-		}, {
-			'id': 2,
-			'selected': false,
-			'name': 'Jan Kowalski'
-		}, {
-			'id': 3,
-			'selected': false,
-			'name': 'Zbigniew Nowak'
-		}];
+		$scope.players = Players.cast;
 
 		$scope.playerChosen = [0, 0];
 
@@ -40,18 +29,13 @@ angular.module('contorllers', [])
 	}
 ])
 
-.controller('ManageUsersCtrl', ['$scope',
-	function($scope) {
+.controller('ManageUsersCtrl', ['$scope', 'PlayerService',
+
+	function($scope, PlayerService) {
 
 		$scope.title = 'Manage User';
 
-		$scope.users = [{
-			name: 'Mark',
-			nick: 'superman'
-		}, {
-			name: 'Joe',
-			nick: 'jooo'
-		}];
+		$scope.users = PlayerService.getPlayers();
 
 		$scope.addUser = function() {
 			var newUser = {
@@ -68,12 +52,14 @@ angular.module('contorllers', [])
 			$scope.users.splice(user, 1);
 		};
 
-		$scope.isDetailsShow = false;
-		$scope.userDetails = function() {
-			$scope.isDetailsShow = !$scope.isDetailsShow;
-			$scope.finishedGames = '6';
-			$scope.bestResults = '5 rounds';
-			$scope.highResults = '450 pkt';
+		$scope.userDetails = function(user) {
+			//$scope.
 		};
+	}
+])
+
+.controller('DetailsUserCtrl', ['$scope', 'Players',
+	function($scope, Player) {
+		$scope.title = 'User details: ';
 	}
 ]);

@@ -1,4 +1,4 @@
-angular.module('dartsApp', ['ngRoute', 'contorllers', 'directives']).
+angular.module('dartsApp', ['ngRoute', 'contorllers', 'services', 'directives']).
 
 config(['$routeProvider',
 	function($routeProvider) {
@@ -12,6 +12,9 @@ config(['$routeProvider',
 			.when('/manageUsers', {
 				templateUrl: 'html/partials/manageUsers.html',
 				controller: 'ManageUsersCtrl'
+			}).when('/detailsUser', {
+				templateUrl: 'detailsUser.html',
+				controller: 'DetailsUserCtrl'
 			})
 			.otherwise({
 				redirectTo: '/'
