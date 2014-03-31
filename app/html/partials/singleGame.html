@@ -2,14 +2,84 @@
 	<div class="panel-heading"><div class="col-md-11">Pojedyncza gra</div><div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" href="#/">Powrót</a></div></div>
 	<div class="panel-body" ng-show="!playersSelected">
 		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>Wybierz zawodników</h2>
+			</div>
 			<players column-no="1" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
 			<players column-no="2" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
 		</div>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();" ng-disabled="playerChosen[0] == 0 || playerChosen[1] == 0">Start</button></div>
+			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="showGameSelector();" ng-disabled="selectedPlayersCount < 2">Dalej</button></div>
 		</div>
 	</div>
-	<div class="panel-body" ng-show="playersSelected">
-		Ekran gry
+	<div class="panel-body" ng-show="playersSelected && !gameLaunched">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>Wybierz grę</h2>
+			</div>
+			<div class="col-md-12 text-center">
+				<button ng-class="{'btn btn-primary' : selectedGame == '301', 'btn btn-default' : selectedGame != '301'}" ng-click="selectGame('301')">301</button>
+				<button ng-class="{'btn btn-primary' : selectedGame == '501', 'btn btn-default' : selectedGame != '501'}" ng-click="selectGame('501')">501</button>
+			</div>
+			<div class="row">
+				<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();"  ng-disabled="selectedPlayersCount < 2 || selectedGame == 'none'">Start</button></div>
+			</div>
+		</div>
 	</div>
+	<div class="panel-body" ng-show="playersSelected && gameLaunched">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>Gra: {{selectedGame}}</h2>
+				<div class="row" ng-repeat="number in playerChosen | limitTo: playerResultRowsCount">
+					<div class="col-md-6" ng-repeat="playerId in playerChosen">
+						<player-result player-id="playerId" players="players"/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-10">
+								<form class="form-inline">
+									<div class="form-group">
+										<input type="number" ng-model="throws[0]" readonly class="form-control input-lg">
+									</div>
+									<div class="form-group">
+										<input type="number" ng-model="throws[1]" readonly class="form-control input-lg">
+									</div>
+									<div class="form-group">
+										<input type="number" ng-model="throws[2]" readonly class="form-control input-lg">
+									</div>
+								</form>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row" ng-repeat="rowNo in [1,2,3,4]">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="row">
+							<div class="col-md-1"></div>
+							<div class="col-md-2 text-center" ng-repeat="id in [1,2,3,4,5]">
+								<button class="btn btn-default calcButton" value="{{(rowNo -1) * 5 + id}}">{{(rowNo -1) * 5 + id}}</button>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4">
+						<div class="row">
+							<div class="col-md-5"></div>
+							<div class="col-md-2 text-center">
+								<button class="btn btn-default calcButton" value="25">25</button>
+							</div>
+							<div class="col-md-5"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </div>

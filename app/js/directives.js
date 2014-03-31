@@ -29,4 +29,31 @@ angular.module('directives', [])
 			}
 		]
 	};
+})
+
+.directive('playerResult', function() {
+	return {
+		restrict: 'E',
+		scope: {
+			playerId: '=',
+			players: '='
+		},
+		template: '<div class="panel panel-default" ng-repeat="player in players | filter: {id : playerId}">' +
+			'<div class="panel-heading">' +
+			'<h2>{{player.name}}</h2>' +
+			'</div>' +
+			'<table class="table table-striped active"><thead>' +
+			'<th>Numer rundy</th>' +
+			'<th>Wynik rundy</th>' +
+			'<th>Wynik końcowy</th></thead>' +
+			'<tbody>' +
+			'<tr ng-repeat="singleResult in playerResults">' +
+			'<td>{{$index + 1}}</td>' +
+			'<td>{{singleResult.roundResult}}</td>' +
+			'<td>{{singleResult.finalResult}}</td>' +
+			'</tr>' +
+			'</tbody>' +
+			'</table>' +
+			'</div>'
+	};
 });
