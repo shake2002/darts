@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"player",
+				"players"
+			],
+			[
+				"dir",
+				"directives	AngularJS"
+			],
+			[
+				"pla",
+				"ngDir_players-list	AngularJS"
+			],
+			[
+				"playe",
+				"playerId"
+			],
+			[
+				"di",
+				"verbose_directive	AngularJS"
+			],
+			[
+				"ng-d",
+				"ng-disabled	AngularJS"
+			],
+			[
+				"ngcl",
+				"ng-click	AngularJS"
+			],
+			[
+				"d",
+				"div	Tag"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"$rou",
+				"$routeProvider	AngularJS"
+			],
+			[
+				"ng-v",
+				"ng-view	AngularJS"
+			],
+			[
+				"modu",
+				"module	QUnit module"
+			],
+			[
 				"ng-s",
 				"ng-src	AngularJS"
 			],
@@ -30,14 +78,6 @@
 			[
 				"te",
 				"ngDir_my-current-time	AngularJS"
-			],
-			[
-				"dir",
-				"directives"
-			],
-			[
-				"$rou",
-				"$routeProvider	AngularJS"
 			],
 			[
 				"con",
@@ -68,10 +108,6 @@
 				"verbose_module	AngularJS"
 			],
 			[
-				"modu",
-				"angular.module"
-			],
-			[
 				"ng",
 				"ng	Angular ngRepeat"
 			],
@@ -100,10 +136,6 @@
 				"$resource	AngularJS"
 			],
 			[
-				"d",
-				"dd	Tag"
-			],
-			[
 				"nr",
 				"ng-repeat	AngularJS"
 			],
@@ -130,10 +162,6 @@
 			[
 				"pho",
 				"phones"
-			],
-			[
-				"h",
-				"$http	AngularJS"
 			],
 			[
 				"op",
@@ -183,6 +211,54 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "css/bootstrap.css",
+			"settings":
+			{
+				"buffer_size": 121220,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/js/app.js",
+			"settings":
+			{
+				"buffer_size": 357,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/js/directives.js",
+			"settings":
+			{
+				"buffer_size": 1354,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/js/controllers.js",
+			"settings":
+			{
+				"buffer_size": 851,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 876,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/html/partials/singleGame.html",
+			"settings":
+			{
+				"buffer_size": 1119,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -190,6 +266,18 @@
 		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"new ",
+				"File: New File Relative to Current View"
+			],
+			[
+				"New Fi",
+				"File: New File Relative to Current View"
+			],
+			[
+				"file",
+				"File: New File Relative to Current View"
+			],
 			[
 				"",
 				"AngularJS: Rebuild Search Index"
@@ -307,7 +395,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 512.0
+		"width": 472.0
 	},
 	"console":
 	{
@@ -328,6 +416,9 @@
 	},
 	"file_history":
 	[
+		"/C/Daniel/GIT/darts/index.html",
+		"/C/Daniel/GIT/darts/js/app.js",
+		"/C/Daniel/GIT/darts/js/lib/angular.js",
 		"/C/Daniel/GIT/angular-phonecat/app/partials/phone-details.html",
 		"/C/Daniel/GIT/angular-phonecat/app/index.html",
 		"/C/Daniel/GIT/angular-phonecat/app/js/app.js",
@@ -466,8 +557,183 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "css/bootstrap.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 121220,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2438,
+								2438
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2136.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 357,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								65,
+								65
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/js/directives.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1354,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								342,
+								718
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/js/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								844,
+								844
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 876,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								210,
+								210
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/html/partials/singleGame.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -517,6 +783,18 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"app",
+				"app\\js\\app.js"
+			],
+			[
+				"boot",
+				"css\\bootstrap.css"
+			],
+			[
+				"in",
+				"index.html"
+			],
 			[
 				"phone-list",
 				"app\\partials\\phone-list.html"
@@ -572,10 +850,6 @@
 			[
 				"controller",
 				"test\\unit\\controllersSpec.js"
-			],
-			[
-				"in",
-				"app\\index.html"
 			]
 		],
 		"width": 0.0
