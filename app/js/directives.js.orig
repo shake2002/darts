@@ -1,16 +1,5 @@
-/* Directives */
+<<<<<<< HEAD
 angular.module('directives', [])
-
-.directive('userdetails', [
-
-	function() {
-		return function(scope, element, attr) {
-			element.bind("mouseenter", function() {
-				scope.userDetails();
-			});
-		};
-	}
-])
 
 .directive('players', function() {
 	// Runs during compile
@@ -27,7 +16,7 @@ angular.module('directives', [])
 			'<div class="caption">' +
 			'Zawodnik nr {{columnNo}}' +
 			'<p ng-repeat="player in players">' +
-			'<button  ng-class="{\'btn btn-primary\' : playerChosen[{{columnNo - 1}}] == player._id, \'btn btn-default\' : playerChosen[{{columnNo - 1}}] != player._id}" ng-click="selectPlayer(player._id)" ng-disabled="(playerChosen[{{columnNo - 1}}] != \'\' && playerChosen[{{columnNo - 1}}] != player._id)  || playerChosen[{{columnNo%2}}] == player._id">{{player.name}}</button>' +
+			'<button  ng-class="{\'btn btn-primary\' : playerChosen[{{columnNo - 1}}] == player.id, \'btn btn-default\' : playerChosen[{{columnNo - 1}}] != player.id}" ng-click="selectPlayer(player.id)" ng-disabled="(playerChosen[{{columnNo - 1}}] > 0 && playerChosen[{{columnNo - 1}}] != player.id)  || playerChosen[{{columnNo%2}}] == player.id">{{player.name}}</button>' +
 			'</p>\n</div>\n</div>\n</div>',
 		controller: ['$scope', '$element', '$attrs', '$transclude',
 			function($scope, $element, $atrrs, $transclude) {
@@ -50,7 +39,7 @@ angular.module('directives', [])
 			playerId: '=',
 			players: '='
 		},
-		template: '<div class="panel panel-default" ng-repeat="player in players | filter: {_id : playerId}">' +
+		template: '<div class="panel panel-default" ng-repeat="player in players | filter: {id : playerId}">' +
 			'<div class="panel-heading">' +
 			'<h2>{{player.name}}</h2>' +
 			'</div>' +
@@ -69,3 +58,18 @@ angular.module('directives', [])
 			'</div>'
 	};
 });
+=======
+/* Directives */
+angular.module('directives', [])
+
+.directive('userdetails', [
+
+	function() {
+		return function(scope, element, attr) {
+			element.bind("mouseenter", function() {
+				scope.userDetails();
+			});
+		};
+	}
+]);
+>>>>>>> master

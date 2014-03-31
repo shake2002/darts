@@ -3,9 +3,13 @@
 	<script src="js/lib/angular.js"></script>
 	<script src="js/lib/angular-route.js"></script>
 	<script src="js/controllers.js"></script>
+<<<<<<< HEAD
+	<script src="js/directives.js"></script>
+=======
 	<script src="js/services.js"></script>
 	<script src="js/directives.js"></script>
 	<script src="js/dataservice.js"></script>
+>>>>>>> master
 	<script src="js/app.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">

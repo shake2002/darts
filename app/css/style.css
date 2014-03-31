@@ -3,3 +3,7 @@
 	height: 42px;
 	margin: 3px;
 }
+
+.singleResultInput {
+	width: 80px !important;
+}

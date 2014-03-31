@@ -3,8 +3,8 @@ HOW TO START
 1. install http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/ and follow further instruction (create folder)
 2. ad 	monogodb/bin to environment variables path
 3. start mongodb by typing  C:\mongodb\bin\mongod.exe --dbpath d:\test\mongodb\data
-4. type  "npm install" from directory server
-5. type  "node server.js" from darts\server\ directory
+4. type  "npm -g install" from directory scripts
+5. type  "node server.js" from darts\scripts\ directory
 
 
 
