@@ -15,16 +15,13 @@ angular.module('dataSource', [])
 		return {
 			addPlayer: function(player) {
 				$http.post('/player/add', player).success(function(data) {
-
+					modelScope.players = data.players;
 				});
 			},
 			removePlayer: function(player) {
 				$http.post('/player/remove', player).success(function(data) {
-
+					modelScope.players = data.players;
 				});
-			},
-			init: function() {
-				console.log('init');
 			}
 		};
 	}
