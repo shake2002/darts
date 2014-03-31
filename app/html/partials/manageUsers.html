@@ -15,18 +15,14 @@
 				<td>{{user.nick}}</td>
 				<td>
 					<a href="" class="glyphicon glyphicon-stats" ng-click="detailsUser(user)"></a>
-					<a href="" class="glyphicon glyphicon-trash" ng-click="removeUser($index)"></a>
+					<a href="" class="glyphicon glyphicon-trash" ng-click="removeUser(user)"></a>
 				</td>				
 			</tr>			
 		</table>		
-		<tr>
-			<td>
-				<div ng-show="showingDetails">
-					<div class="col-md-11">Details</div>
-					<div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" ng-click="closeDetails()">Zamknij</a></div>
-				</div>
-			</td>
-		</tr>
+		<div ng-show="showingDetails">
+			<div class="col-md-11">Details: {{userDetails}}</div>
+			<div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" ng-click="closeDetails()">Zamknij</a></div>
+		</div>
 	</div>
 	<div class="panel-footer">
 		<h3>Add new user:</h3>
@@ -34,10 +30,10 @@
 			<div class="form-group">
 				<label for="username" class="col-sm-4 control-label">Name</label>
 				<div class="col-sm-4">
-					<input type="text" name="username" class="form-control" placeholder="put your name" ng-model="userName" ng-minlength="3" ng-pattern="/^[a-zA-Z]+$/" required>
+					<input type="text" name="username" class="form-control" placeholder="put your name" ng-model="userName" ng-minlength="3" ng-pattern="/^[a-zA-Z ]+$/" required>
 					<div ng-show="userForm.username.$dirty && userForm.username.$invalid">
-						<span ng-show="userForm.username.$error.required">Name is required.</span>
 						<span ng-show="userForm.username.$error.minlength">Name must be greater than 3 characters.</span>
+						<span ng-show="userForm.username.$error.pattern">Name allows only letters and space.</span>
 					</div>
 				</div>
 			</div>
@@ -49,7 +45,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-6">
-					<button type="submit" class="btn btn-primary" ng-disabled="userForm.$dirty && userForm.$invalid">Add User</button>
+					<button type="submit" class="btn btn-primary" ng-disabled="userForm.username.$error.minlength || userForm.username.$error.pattern">Add User</button>
 				</div>
 			</div>
 		</form>
