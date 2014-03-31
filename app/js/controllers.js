@@ -8,7 +8,6 @@ angular.module('contorllers', ['dataSource'])
 		$scope.gameLaunched = false;
 		$scope.playerResultRowsCount = 0;
 
-		fDatService.init();
 		$scope.$watch(function() {
 			$scope.players = $scope.$parent.modelScope.players;
 		});
