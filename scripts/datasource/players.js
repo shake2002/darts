@@ -22,7 +22,7 @@ exports.addPlayer = function(db, data, callback) {
 
 exports.removePlayer = function(db, data, callback) {
 	console.log('remove player:' + data);
-	db.collection(PLAYERS_TABLE_NAME).delete(data, function() {
+	db.collection(PLAYERS_TABLE_NAME).remove(data, function() {
 		console.log('remove player dbcallback');
 	});
 	callback();

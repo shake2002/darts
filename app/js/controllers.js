@@ -115,12 +115,15 @@ angular.module('contorllers', ['dataSource'])
 		};
 
 		$scope.removeUser = function(user) {
-			$scope.users.splice(user, 1);
+
+			fDatService.removePlayer({
+				'_id': user._id
+			});
+			//$scope.users.splice(user, 1);
 		};
 
 		$scope.showingDetails = false;
 		$scope.userDetails = function(user) {
-			console.log(user + ' | ' + $scope.showingDetails);
 			$scope.showingDetails = true;
 			$scope.userDetails = user;
 		};
