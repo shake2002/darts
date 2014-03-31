@@ -12,7 +12,8 @@ config(['$routeProvider',
 			.when('/manageUsers', {
 				templateUrl: 'html/partials/manageUsers.html',
 				controller: 'ManageUsersCtrl'
-			}).when('/detailsUser', {
+			})
+			.when('/detailsUser', {
 				templateUrl: 'detailsUser.html',
 				controller: 'DetailsUserCtrl'
 			})

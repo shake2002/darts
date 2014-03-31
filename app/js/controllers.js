@@ -1,4 +1,4 @@
-angular.module('contorllers', [])
+angular.module('contorllers', ['dataSource'])
 
 .controller('SingleGameCtrl', ['$scope', 'Players',
 
@@ -29,20 +29,25 @@ angular.module('contorllers', [])
 	}
 ])
 
-.controller('ManageUsersCtrl', ['$scope', 'PlayerService',
+.controller('ManageUsersCtrl', ['$scope', 'PlayerService', 'fDatService',
 
-	function($scope, PlayerService) {
+	function($scope, PlayerService, fDatService) {
 
 		$scope.title = 'Manage User';
 
-		$scope.users = PlayerService.getPlayers();
+
+		fDatService.init();
+		$scope.$watch(function() {
+			$scope.users = $scope.$parent.modelScope.players;
+		});
+		//$scope.users = PlayerService.getPlayers();
 
 		$scope.addUser = function() {
 			var newUser = {
 				name: $scope.userName,
 				nick: $scope.userNick
 			};
-			$scope.users.push(newUser);
+			fDatService.addPlayer(newUser);
 
 			$scope.userName = '';
 			$scope.userNick = '';
@@ -52,8 +57,15 @@ angular.module('contorllers', [])
 			$scope.users.splice(user, 1);
 		};
 
+		$scope.showingDetails = false;
 		$scope.userDetails = function(user) {
-			//$scope.
+			console.log(user + ' | ' + $scope.showingDetails);
+			$scope.showingDetails = true;
+			$scope.userDetails = user;
+		};
+		$scope.closeDetails = function() {
+			$scope.showingDetails = false;
+			$scope.userDetails = '';
 		};
 	}
 ])

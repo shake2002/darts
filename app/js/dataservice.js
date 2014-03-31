@@ -18,6 +18,11 @@ angular.module('dataSource', [])
 
 				});
 			},
+			removePlayer: function(player) {
+				$http.post('/player/remove', player).success(function(data) {
+
+				});
+			},
 			init: function() {
 				console.log('init');
 			}

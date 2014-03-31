@@ -1,17 +1,10 @@
-angular.module('services', [])
+angular.module('services', ['dataSource'])
 
-.factory('PlayerService', function($rootScope) {
+.factory('PlayerService', function($rootScope, fDatService) {
+
 	var factory = {};
 
-	var players = [{
-		id: 1,
-		name: 'Mark King',
-		nick: 'superman'
-	}, {
-		id: 2,
-		name: 'Joe Perry',
-		nick: 'jooo'
-	}];
+	var players = $rootScope.modelScope.players;
 
 	factory.getPlayers = function() {
 		return players;
