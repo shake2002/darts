@@ -35,12 +35,9 @@ angular.module('contorllers', ['dataSource'])
 
 		$scope.title = 'Manage User';
 
-
-		fDatService.init();
 		$scope.$watch(function() {
 			$scope.users = $scope.$parent.modelScope.players;
 		});
-		//$scope.users = PlayerService.getPlayers();
 
 		$scope.addUser = function() {
 			var newUser = {
