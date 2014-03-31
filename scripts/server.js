@@ -33,7 +33,7 @@ var url = __dirname + './../app';
 console.log("URL:" + url);
 
 app.use(express.static(url));
-
+app.use(express.bodyParser());
 app.use(express.logger({
 	stream: accessLogFile
 }));
