@@ -7,6 +7,11 @@ angular.module('contorllers', ['dataSource'])
 		$scope.selectedGame = 'none';
 		$scope.gameLaunched = false;
 		$scope.playerResultRowsCount = 0;
+		$scope.activePlayer = 0;
+		$scope.playerResult = 0;
+		$scope.activeInput = 0;
+		$scope.shots = ['', '', ''];
+		$scope.disableDT = false;
 
 		$scope.$watch(function() {
 			$scope.players = $scope.$parent.modelScope.players;
@@ -18,6 +23,7 @@ angular.module('contorllers', ['dataSource'])
 		};
 
 		$scope.startGame = function() {
+			$scope.activePlayer = $scope.playerChosen[0];
 			$scope.gameLaunched = true;
 		};
 
@@ -26,6 +32,7 @@ angular.module('contorllers', ['dataSource'])
 				$scope.playerChosen[columnNo - 1] = 0;
 				$scope.selectedPlayersCount--;
 				$scope.playerResultRowsCount = Math.ceil($scope.selectedPlayersCount / 2);
+				$scope.shots = [];
 			} else {
 				for (var i = $scope.players.length - 1; i >= 0; i--) {
 					player = $scope.players[i];
@@ -39,6 +46,49 @@ angular.module('contorllers', ['dataSource'])
 		};
 		$scope.selectGame = function(gameType) {
 			$scope.selectedGame = gameType;
+		};
+		$scope.nextInput = function() {
+			if ($scope.activeInput < 2) {
+				$scope.activeInput++;
+			}
+			$scope.disableDT = false;
+		};
+		$scope.prevInput = function() {
+			if ($scope.activeInput > 0) {
+				$scope.activeInput--;
+			}
+			$scope.disableDT = false;
+		};
+
+		$scope.nextPlayer = function() {
+			for (var i = 0; i < $scope.selectedPlayersCount; i++) {
+				if ($scope.playerChosen[i] == $scope.activePlayer) {
+					if (i == $scope.selectedPlayersCount - 1) {
+						$scope.activePlayer = $scope.playerChosen[0];
+					} else {
+						$scope.activePlayer = $scope.playerChosen[i + 1];
+					}
+					break;
+				}
+			}
+			for (i = 0; i < $scope.shots.length; i++) {
+				$scope.shots[i] = '';
+			}
+			$scope.activeInput = 0;
+			$scope.disableDT = false;
+		};
+		$scope.setResult = function(result) {
+			$scope.shots[$scope.activeInput] = result;
+		};
+
+		$scope.double = function() {
+			$scope.shots[$scope.activeInput] = $scope.shots[$scope.activeInput] * 2;
+			$scope.disableDT = true;
+		};
+
+		$scope.tripple = function() {
+			$scope.shots[$scope.activeInput] = $scope.shots[$scope.activeInput] * 3;
+			$scope.disableDT = true;
 		};
 	}
 ])
