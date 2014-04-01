@@ -3,24 +3,34 @@ angular.module('dataSource', [])
 .factory('fDatService', ['$http', '$rootScope',
 	function($http, $rootScope) {
 		var modelScope = {
-			players: []
+			players: [],
+			games: []
 		};
 
 		$rootScope.modelScope = modelScope;
 
-		$http.get('/player/list').success(function(data) {
-			modelScope.players = data.players;
+		$http.get('/init').success(function(data) {
+			assignToModel(data);
 		});
+	var assignToModel = function(data) {
+			modelScope.players = data.players;
+			modelScope.games = data.games;
+		};
 
 		return {
 			addPlayer: function(player) {
 				$http.post('/player/add', player).success(function(data) {
-					modelScope.players = data.players;
+					assignToModel(data);
 				});
 			},
 			removePlayer: function(player) {
 				$http.post('/player/remove', player).success(function(data) {
-					modelScope.players = data.players;
+					assignToModel(data);
+				});
+			},
+			newGame: function(game) {
+				$http.post('/game/new', game).success(function(data) {
+					assignToModel(data);
 				});
 			}
 		};
