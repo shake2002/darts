@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 var Players = require('./players');
 var Games = require('./games');
 var myDb;
@@ -32,6 +33,7 @@ exports.init = function(server) {
 		});
 	});
 	server.post('/player/add', function(request, response) {
+		console.log('add player server post: request:' + request + ', response:' + response);
 		Players.addPlayer(myDb, request.body, function() {
 			retreiveInitData(function(data) {
 				response.send(data);
@@ -59,10 +61,13 @@ var retreiveInitData = function(callback) {
 		players: [],
 		games: []
 	};
+	console.log('retriveInitData: result: ' + result + ' callback:' + callback);
 	Players.getPlayers(myDb, function(data) {
+		console.log('result data PLAYER: (' + data.length + ') ' + data);
 		result.players = data.players;
 	});
 	Games.getGames(myDb, function(data) {
+		console.log('result data GAME: ' + data);
 		result.games = data.games;
 		callback(result);
 	});
