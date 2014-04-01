@@ -12,46 +12,18 @@ angular.module('directives', [])
 	}
 ])
 
-.directive('players', function() {
-	// Runs during compile
-	return {
-		restrict: 'E',
-		scope: {
-			columnNo: '=',
-			players: '=',
-			action: '&',
-			playerChosen: '='
-		},
-		template: '<div class="col-md-6">' +
-			'<div class="thumbnail">' +
-			'<div class="caption">' +
-			'Zawodnik nr {{columnNo}}' +
-			'<p ng-repeat="player in players">' +
-			'<button  ng-class="{\'btn btn-primary\' : playerChosen[{{columnNo - 1}}] == player._id, \'btn btn-default\' : playerChosen[{{columnNo - 1}}] != player._id}" ng-click="selectPlayer(player._id)" ng-disabled="(playerChosen[{{columnNo - 1}}] != \'\' && playerChosen[{{columnNo - 1}}] != player._id)  || playerChosen[{{columnNo%2}}] == player._id">{{player.name}}</button>' +
-			'</p>\n</div>\n</div>\n</div>',
-		controller: ['$scope', '$element', '$attrs', '$transclude',
-			function($scope, $element, $atrrs, $transclude) {
-				$scope.selectPlayer = function(playerId) {
-					console.log(playerId);
-					$scope.action({
-						selectedPlayerId: playerId,
-						selectedColumnNo: $scope.columnNo
-					});
-				};
-			}
-		]
-	};
-})
 
 .directive('playerResult', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			playerId: '=',
+			playerResultRowsCount: "=",
 			players: '=',
-			activePlayer: '='
+			currentPlayer: '='
 		},
-		template: '<div ng-class="{ \'panel panel-primary\' : activePlayer == player._id, \'panel panel-default\' : activePlayer != player._id}" ng-repeat="player in players | filter: {_id : playerId}">' +
+		template: '<div class="row" ng-repeat="number in playerResultRowsCount">' +
+			'<div class="col-md-6" ng-repeat="player in players.slice($index*2, $index*2+2)">' +
+			'<div ng-class="{ \'panel panel-primary\' : currentPlayer._id == player._id, \'panel panel-default\' : currentPlayer._id != player._id}">' +
 			'<div class="panel-heading">' +
 			'<h2>{{player.name}} ({{player.place}})</h2>' +
 			'</div>' +
@@ -67,6 +39,8 @@ angular.module('directives', [])
 			'</tr>' +
 			'</tbody>' +
 			'</table>' +
+			'</div>' +
+			'</div>' +
 			'</div>'
 	};
 });

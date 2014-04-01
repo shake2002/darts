@@ -3,15 +3,15 @@ angular.module('contorllers', ['dataSource'])
 .controller('SingleGameCtrl', ['$scope', 'fDatService',
 	function($scope, fDatService) {
 
-		$scope.selectedPlayersCount = 0;
+		$scope.selectedPlayers = [];
 		$scope.selectedGame = 'none';
 		$scope.gameLaunched = false;
 		$scope.playerResultRowsCount = 0;
-		$scope.activePlayer = 0;
 		$scope.playerResult = 0;
 		$scope.activeInput = 0;
 		$scope.roundNo = 1;
 		$scope.currentPlace = 1;
+		$scope.gameFinished = false;
 		$scope.shots = [{
 			value: 0,
 			multipier: 1,
@@ -36,38 +36,23 @@ angular.module('contorllers', ['dataSource'])
 		};
 
 		$scope.startGame = function() {
-			$scope.activePlayer = $scope.playerChosen[0];
+			for (var i = 0; i < $scope.selectedPlayers.length; i++) {
+				var player = $scope.selectedPlayers[i];
+				player.partialResults = [];
+				player.place = 0;
+				player.finished = false;
+			}
+			$scope.playerResultRowsCount = [];
+			var count = Math.ceil($scope.selectedPlayers.length / 2);
+			for (i = 0; i < count; i++) {
+				$scope.playerResultRowsCount.push(i);
+			}
+			$scope.currentPlayer = $scope.selectedPlayers[0];
 			$scope.gameLaunched = true;
 		};
 
-		$scope.selectPlayer = function(playerId, columnNo) {
-			if ($scope.playerChosen[columnNo - 1] == playerId) {
-				$scope.playerChosen[columnNo - 1] = 0;
-				$scope.selectedPlayersCount--;
-				$scope.playerResultRowsCount = Math.ceil($scope.selectedPlayersCount / 2);
-				$scope.shots = [];
-			} else {
-				for (var i = $scope.players.length - 1; i >= 0; i--) {
-					player = $scope.players[i];
-					if (player._id == playerId) {
-						$scope.playerChosen[columnNo - 1] = playerId;
-						$scope.selectedPlayersCount++;
-						$scope.playerResultRowsCount = Math.ceil($scope.selectedPlayersCount / 2);
-					}
-				}
-			}
-		};
 		$scope.selectGame = function(gameType) {
 			$scope.selectedGame = gameType;
-			for (var i = 0; i < $scope.selectedPlayersCount; i++) {
-				for (var j = 0; j < $scope.players.length; j++) {
-					var player = $scope.players[j];
-					if (player._id == $scope.playerChosen[i]) {
-						player.partialResults = [];
-						player.place = 0;
-					}
-				}
-			}
 		};
 		$scope.nextInput = function() {
 			if ($scope.activeInput < 2) {
@@ -88,9 +73,12 @@ angular.module('contorllers', ['dataSource'])
 				$scope.shots[i].multipier = 1;
 				$scope.shots[i].display = '';
 			}
-			for (i = 0; i < $scope.players.length; i++) {
-				var player = $scope.players[i];
-				if (player._id == $scope.activePlayer) {
+			var tmpNextPlayer = '';
+			var playerFounded = false;
+			var playerBeforeCurrent = true;
+			for (i = 0; i < $scope.selectedPlayers.length; i++) {
+				var player = $scope.selectedPlayers[i];
+				if (!playerFounded && player._id == $scope.currentPlayer._id) {
 					var tmpResults = {};
 					tmpResults.roundNo = $scope.roundNo;
 					tmpResults.roundResult = result;
@@ -109,23 +97,38 @@ angular.module('contorllers', ['dataSource'])
 					} else if (finalResult === 0) {
 						player.place = $scope.currentPlace;
 						$scope.currentPlace++;
+						player.finished = true;
+						if ($scope.currentPlace == $scope.selectedPlayers.length) {
+							$scope.gameFinished = true;
+						}
 					}
 					player.partialResults.push(tmpResults);
-					break;
-				}
-			}
-			$scope.activeInput = 0;
-			for (i = 0; i < $scope.selectedPlayersCount; i++) {
-				if ($scope.playerChosen[i] == $scope.activePlayer) {
-					if (i == $scope.selectedPlayersCount - 1) {
-						$scope.activePlayer = $scope.playerChosen[0];
-						$scope.roundNo++;
-					} else {
-						$scope.activePlayer = $scope.playerChosen[i + 1];
+					playerFounded = true;
+				} else {
+					if (!playerFounded && !player.finished && tmpNextPlayer === '') {
+						tmpNextPlayer = player;
+					} else if (playerFounded && !player.finished) {
+						tmpNextPlayer = player;
+						playerBeforeCurrent = false;
+						break;
 					}
-					break;
 				}
 			}
+
+			if ($scope.gameFinished) {
+				for (i = 0; i < $scope.selectedPlayers.length; i++) {
+					var playerTmp = $scope.selectedPlayers[i];
+					if (!playerTmp.finished) {
+						playerTmp.place = $scope.currentPlace;
+					}
+				}
+				//send results
+			}
+			if (playerBeforeCurrent) {
+				$scope.roundNo++;
+			}
+			$scope.currentPlayer = tmpNextPlayer;
+			$scope.activeInput = 0;
 		};
 		$scope.setResult = function(result) {
 			$scope.shots[$scope.activeInput].value = result;

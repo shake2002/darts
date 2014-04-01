@@ -3,13 +3,27 @@
 	<div class="panel-body" ng-show="!playersSelected">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<h2>Wybierz zawodników</h2>
+				<h2>Wybierz zawodników {{selectedPlayers.length}}</h2>
 			</div>
-			<players column-no="1" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
-			<players column-no="2" players="players" player-chosen="playerChosen"  action="selectPlayer(selectedPlayerId, selectedColumnNo)"></players>
 		</div>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="showGameSelector();" ng-disabled="selectedPlayersCount < 2">Dalej</button></div>
+			<div class="col-md-6">
+				<div class="thumbnail" data-drop="true" ng-model='players' jqyoui-droppable="{multiple:true}" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=players])'}">
+					<div class="caption">
+						<div class="btn btn-info btn-draggable" ng-repeat="item in players" ng-show="item.name" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="players" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.name}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="thumbnail" data-drop="true" ng-model='selectedPlayers' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=selectedPlayers])'}"  jqyoui-droppable="{multiple:true}">
+					<div class="caption">
+						<div class="btn btn-info btn-draggable" ng-repeat="item in selectedPlayers" ng-show="item.name" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="selectedPlayers" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="showGameSelector();" ng-disabled="selectedPlayers.length < 2">Dalej</button></div>
 		</div>
 	</div>
 	<div class="panel-body" ng-show="playersSelected && !gameLaunched">
@@ -22,7 +36,7 @@
 				<button ng-class="{'btn btn-primary' : selectedGame == '501', 'btn btn-default' : selectedGame != '501'}" ng-click="selectGame('501')">501</button>
 			</div>
 			<div class="row">
-				<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();"  ng-disabled="selectedPlayersCount < 2 || selectedGame == 'none'">Start</button></div>
+			<div class="col-md-1 col-md-offset-11"><button class="btn btn-warning" ng-click="startGame();"  ng-disabled="selectedPlayers.length < 2 || selectedGame == 'none'">Start</button></div>
 			</div>
 		</div>
 	</div>
@@ -30,14 +44,11 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<h2>Gra: {{selectedGame}}</h2> 
-				<div class="row" ng-repeat="number in playerChosen | limitTo: playerResultRowsCount">
-					<div class="col-md-6" ng-repeat="playerId in playerChosen">
-						<player-result player-id="playerId" players="players" active-player="activePlayer"/>
-					</div>
+						<player-result players="selectedPlayers" current-player="currentPlayer" player-result-rows-count="playerResultRowsCount"/>
 				</div>
 				<div class="row">
 					<div class="col-md-12 text-right">
-						<button class="btn btn-primary btn-lg" ng-click="nextPlayer()">Następny zawodnik</button>
+						<button class="btn btn-primary btn-lg" ng-click="nextPlayer()" ng-disabled="gameFinished">Następny zawodnik</button>
 					</div>
 				</div>
 				<div class="row">
@@ -47,7 +58,7 @@
 								<form class="form-inline">
 									<div class="form-group">
 										<ul class="pager">
-										  <li ng-class="{'disabled' : activeInput == 0}"><a href="" ng-click="prevInput()">Poprzedni</a></li>
+											<li ng-class="{'disabled' : activeInput == 0 || gameFinished}"><a href="" ng-click="prevInput()">Poprzedni</a></li>
 										</ul>
 									</div>
 									<div ng-class="{'form-group has-success' : activeInput == 0, 'form-group' : activeInput != 0}">
@@ -61,7 +72,7 @@
 									</div>
 									<div class="form-group">
 										<ul class="pager">
-										  <li ng-class="{'disabled' : activeInput == 2}"><a href="" ng-click="nextInput()">Następny</a></li>
+											<li ng-class="{'disabled' : activeInput == 2 || gameFinished}"><a href="" ng-click="nextInput()">Następny</a></li>
 										</ul>
 									</div>
 								</form>

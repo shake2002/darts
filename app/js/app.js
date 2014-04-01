@@ -1,4 +1,4 @@
-angular.module('dartsApp', ['ngRoute', 'contorllers', 'services', 'directives']).
+angular.module('dartsApp', ['ngRoute', 'contorllers', 'services', 'directives', 'ngDragDrop']).
 
 config(['$routeProvider',
 	function($routeProvider) {
