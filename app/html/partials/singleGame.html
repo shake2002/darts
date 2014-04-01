@@ -51,13 +51,13 @@
 										</ul>
 									</div>
 									<div ng-class="{'form-group has-success' : activeInput == 0, 'form-group' : activeInput != 0}">
-										<input type="number" ng-model="shots[0]" readonly class="singleResultInput form-control input-lg">
+										<input type="text" ng-model="shots[0].display" readonly class="singleResultInput form-control input-lg">
 									</div>
 									<div ng-class="{'form-group has-success' : activeInput == 1, 'form-group' : activeInput != 1}">
-										<input type="number" ng-model="shots[1]" readonly class="form-control input-lg singleResultInput ">
+										<input type="text" ng-model="shots[1].display" readonly class="form-control input-lg singleResultInput ">
 									</div>
 									<div ng-class="{'form-group has-success' : activeInput == 2, 'form-group' : activeInput != 2}">
-										<input type="number" ng-model="shots[2]" readonly class="form-control input-lg singleResultInput">
+										<input type="text" ng-model="shots[2].display" readonly class="form-control input-lg singleResultInput">
 									</div>
 									<div class="form-group">
 										<ul class="pager">
@@ -82,10 +82,9 @@
 					<div class="col-md-4 col-md-offset-4">
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<button class="btn btn-warning">Wyczysc</button>
-								<button class="btn btn-warning calcButton" value="x2" ng-disabled="shots[activeInput] == '' || disableDT" ng-click="double()">x2</button>
+								<button class="btn btn-warning calcButton" value="x2" ng-disabled="shots[activeInput].value == '' || shots[activeInput].multipier > 1" ng-click="double()">x2</button>
 								<button class="btn btn-default calcButton" ng-click="setResult(25)">25</button>
-								<button class="btn btn-warning calcButton" value="x2" ng-disabled="shots[activeInput] == '' || shots[activeInput] == 25 || disableDT" ng-click="tripple()">x3</button>
+								<button class="btn btn-warning calcButton" value="x2" ng-disabled="shots[activeInput].value == '' || shots[activeInput].value == 25 || shots[activeInput].multipier > 1" ng-click="tripple()">x3</button>
 							</div>
 						</div>
 					</div>
