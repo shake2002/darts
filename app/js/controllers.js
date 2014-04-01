@@ -66,6 +66,14 @@ angular.module('contorllers', ['dataSource'])
 
 		$scope.removeUser = function(user) {
 
+			console.log(user);
+
+			var tmp = {
+				'_id': user._id
+			};
+
+			console.log(tmp);
+
 			fDatService.removePlayer({
 				'_id': user._id
 			});

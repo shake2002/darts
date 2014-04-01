@@ -9,7 +9,7 @@
 				<th>Nickname</th>
 				<th>Action</th>
 			</tr>
-			<tr ng-click="userDetails(user)" ng-repeat="user in users | filter: search">
+			<tr ng-repeat="user in users | filter: search">
 				<td>{{$index + 1}}.</td>
 				<td>{{user.name}}</td>
 				<td>{{user.nick}}</td>
@@ -19,10 +19,6 @@
 				</td>				
 			</tr>			
 		</table>		
-		<div ng-show="showingDetails">
-			<div class="col-md-11">Details: {{userDetails}}</div>
-			<div class="col=md-1"><a class="btn btn-warning btn-xs" role="button" ng-click="closeDetails()">Zamknij</a></div>
-		</div>
 	</div>
 	<div class="panel-footer">
 		<h3>Add new user:</h3>
