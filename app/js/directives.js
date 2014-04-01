@@ -48,9 +48,10 @@ angular.module('directives', [])
 		restrict: 'E',
 		scope: {
 			playerId: '=',
-			players: '='
+			players: '=',
+			activePlayer: '='
 		},
-		template: '<div class="panel panel-default" ng-repeat="player in players | filter: {_id : playerId}">' +
+		template: '<div ng-class="{ \'panel panel-primary\' : activePlayer == player._id, \'panel panel-default\' : activePlayer != player._id}" ng-repeat="player in players | filter: {_id : playerId}">' +
 			'<div class="panel-heading">' +
 			'<h2>{{player.name}}</h2>' +
 			'</div>' +
