@@ -103,6 +103,9 @@ angular.module('contorllers', ['dataSource'])
 			$scope.users = $scope.$parent.modelScope.players;
 		});
 
+		window.scope = $scope.$parent.modelScope.players;
+		window.scope2 = $scope;
+
 		$scope.addUser = function() {
 			var newUser = {
 				name: $scope.userName,
@@ -115,19 +118,7 @@ angular.module('contorllers', ['dataSource'])
 		};
 
 		$scope.removeUser = function(user) {
-
-			console.log(user);
-
-			var tmp = {
-				'_id': user._id
-			};
-
-			console.log(tmp);
-
-			fDatService.removePlayer({
-				'_id': user._id
-			});
-			//$scope.users.splice(user, 1);
+			fDatService.removePlayer(user);
 		};
 
 		$scope.showingDetails = false;

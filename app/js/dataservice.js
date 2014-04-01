@@ -12,7 +12,8 @@ angular.module('dataSource', [])
 		$http.get('/init').success(function(data) {
 			assignToModel(data);
 		});
-	var assignToModel = function(data) {
+		var assignToModel = function(data) {
+			console.log('assign to model: ' + data);
 			modelScope.players = data.players;
 			modelScope.games = data.games;
 		};
