@@ -53,15 +53,15 @@ angular.module('directives', [])
 		},
 		template: '<div ng-class="{ \'panel panel-primary\' : activePlayer == player._id, \'panel panel-default\' : activePlayer != player._id}" ng-repeat="player in players | filter: {_id : playerId}">' +
 			'<div class="panel-heading">' +
-			'<h2>{{player.name}}</h2>' +
+			'<h2>{{player.name}} ({{player.place}})</h2>' +
 			'</div>' +
 			'<table class="table table-striped active"><thead>' +
 			'<th>Numer rundy</th>' +
 			'<th>Wynik rundy</th>' +
 			'<th>Wynik końcowy</th></thead>' +
 			'<tbody>' +
-			'<tr ng-repeat="singleResult in playerResults">' +
-			'<td>{{$index + 1}}</td>' +
+			'<tr ng-repeat="singleResult in player.partialResults">' +
+			'<td>{{singleResult.roundNo}}</td>' +
 			'<td>{{singleResult.roundResult}}</td>' +
 			'<td>{{singleResult.finalResult}}</td>' +
 			'</tr>' +
