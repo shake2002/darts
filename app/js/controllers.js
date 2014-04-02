@@ -122,7 +122,12 @@ angular.module('contorllers', ['dataSource'])
 						playerTmp.place = $scope.currentPlace;
 					}
 				}
-				//send results
+				fDatService.newGame({
+					'game': {
+						'type': $scope.selectedGame
+					},
+					'players': $scope.selectedPlayers
+				});
 			}
 			if (playerBeforeCurrent) {
 				$scope.roundNo++;
