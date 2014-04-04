@@ -33,7 +33,6 @@ exports.init = function(server) {
 		});
 	});
 	server.post('/player/add', function(request, response) {
-		console.log('add player server post: request:' + request + ', response:' + response);
 		Players.addPlayer(myDb, request.body, function() {
 			retreiveInitData(function(data) {
 				response.send(data);
@@ -61,14 +60,12 @@ var retreiveInitData = function(callback) {
 		players: [],
 		games: []
 	};
-	console.log('retriveInitData: result: ' + result + ' callback:' + callback);
-	Players.getPlayers(myDb, function(data) {
-		console.log('result data PLAYER: (' + data.length + ') ' + data);
-		result.players = data.players;
+	Players.getPlayers(myDb, function(playersData) {
+		Games.getGames(myDb, function(gamesData) {
+			result.games = gamesData.games;
+			result.players = playersData.players;
+			callback(result);
+		});
 	});
-	Games.getGames(myDb, function(data) {
-		console.log('result data GAME: ' + data);
-		result.games = data.games;
-		callback(result);
-	});
+
 };

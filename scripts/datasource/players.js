@@ -2,7 +2,6 @@ var ObjectId = require('mongodb').ObjectID;
 var PLAYERS_TABLE_NAME = 'player';
 
 exports.getPlayers = function(db, callback) {
-	console.log('getPlayers');
 	db.collection(PLAYERS_TABLE_NAME).find().sort({
 		'name': 1
 	}).toArray(function(err, array) {
@@ -12,22 +11,24 @@ exports.getPlayers = function(db, callback) {
 	});
 };
 exports.addPlayer = function(db, data, callback) {
-	console.log('add player:' + data);
+	console.dir(data);
 	db.collection(PLAYERS_TABLE_NAME).insert(data, {
 		safe: true
 	}, function() {
-		console.log('addplayer dbcallback');
+		console.log('addplayer dbcallback start');
+		callback();
+		console.log('addplayer dbcallback end');
 	});
 
-	callback();
+	//	callback();
+
 };
 
 exports.removePlayer = function(db, data, callback) {
-	console.log('remove player: ' + data._id);
 	db.collection(PLAYERS_TABLE_NAME).remove({
 		"_id": ObjectId("" + data._id + "")
 	}, function() {
-		console.log('remove player dbcallback');
+		callback();
 	});
-	callback();
+
 };
