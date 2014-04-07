@@ -1,0 +1,13 @@
+{
+  "name": "darts",
+  "description": "Description",
+  "repository": "https://github.com/shake2002/darts",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-markdown": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}
