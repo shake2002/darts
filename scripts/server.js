@@ -34,9 +34,9 @@ console.log("URL:" + url);
 
 app.use(express.static(url));
 app.use(express.bodyParser());
-app.use(express.logger({
+/*app.use(express.logger({
 	stream: accessLogFile
-}));
+}));*/
 
 registerService(app);
 
