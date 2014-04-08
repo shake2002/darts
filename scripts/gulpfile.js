@@ -26,8 +26,8 @@ server.use(express.bodyParser());
 var fullPath = function(input) {
   var result = [];
   for (var i = 0; i < input.length; i++) {
-    console.log(input[i].path);
-    result[i] = ROOT + "/" + input[i].path;
+    console.log(input[i]);
+    result[i] = ROOT + "/" + input[i];
   }
 
 

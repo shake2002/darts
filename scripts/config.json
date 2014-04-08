@@ -1,11 +1,3 @@
 {
-	"paths": [{
-		"path": "*.html"
-	}, {
-		"path": "html/partials/*.html"
-	}, {
-		"path": "js/*.js"
-	}, {
-		"path": "css/*.css"
-	}]
+	"paths": ["*.html", "html/partials/*.html", "js/*.js", "css/*.css"]
 }
