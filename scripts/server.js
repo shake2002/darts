@@ -1,22 +1,16 @@
 var express = require('express'),
 	fileSystem = require('fs'),
 	path = require('path'),
+	datasourceService = require('./datasource/db-service.js'),
 	accessLogFile = fileSystem.createWriteStream('./access.log', {
 		flags: 'a'
 	});
 
-var services = [
-	'db-service'
-];
 var app = express(),
-	registerService = function (app) {
+	registerService = function(app) {
 		console.log('Register service START');
-		for (var i = 0; i < services.length; i++) {
-			var service = require('./datasource/' + services[i] + '.js');
-			console.log(service);
-			if (service.init)
-				service.init(app);
-		}
+		if (datasourceService.init)
+			datasourceService.init(app);
 		console.log('Register service END');
 	};
 
@@ -25,7 +19,7 @@ var port = parseInt(process.argv[2]) || DEFAULT_PORT;
 
 app.use(express.logger());
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
 	console.error(err.stack);
 	res.send(500, 'Something broke!');
 });

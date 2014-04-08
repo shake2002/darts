@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		watch: {
 			scripts: {
-				files: ['js/*.js', 'html/partials/*.html', 'css/*.css', '*.html'],
+				files: fullPath(grunt.file.readJSON('config.json').paths),
 				tasks: [],
 				options: {
 					livereload: true
@@ -15,4 +15,14 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', ['watch']);
 
+};
+
+var fullPath = function(input) {
+	console.log(input);
+	var result = [];
+	for (var i = 0; i < input.length; i++) {
+		console.log(input[i].path);
+		result[i] = input[i].path;
+	}
+	return result;
 };

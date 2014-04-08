@@ -4,7 +4,8 @@ var gulp = require('gulp'),
   express = require('express'),
   watch = require('gulp-watch'),
   livereload = require('connect-livereload'),
-  dbservice = require('./datasource/db-service.js'),
+  config = require('./config.json'),
+  datasourceService = require('./datasource/db-service.js'),
   livereloadport = 35729,
   serverport = 8000;
 
@@ -23,16 +24,19 @@ server.use(express.bodyParser());
 
 
 var fullPath = function(input) {
+  var result = [];
   for (var i = 0; i < input.length; i++) {
-    input[i] = ROOT + input[i];
+    console.log(input[i].path);
+    result[i] = ROOT + "/" + input[i].path;
   }
-  return input;
+
+
+  console.log(result);
+  return result;
 };
 
-var pathsArray = ['/*.html', '/html/partials/*.html', '/js/*.js', '/css/*.css'];
-
 gulp.task('reload', function() {
-  gulp.src(fullPath(pathsArray), {
+  gulp.src(fullPath(config.paths), {
     read: false
   })
     .pipe(watch({
@@ -42,8 +46,8 @@ gulp.task('reload', function() {
 
 
 gulp.task('serve', function() {
-  if (dbservice.init)
-    dbservice.init(server);
+  if (datasourceService.init)
+    datasourceService.init(server);
   //Set up your static fileserver, which serves files in the build dir
   server.listen(serverport);
 
